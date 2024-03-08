@@ -13,7 +13,7 @@ module.exports.config = {
 };
 
 module.exports.run = async function({ api, event }) {
-  api.sendMessage('Fetching random Bible verse...', event.threadID, async (err, msgInfo) => {
+  api.sendMessage('', event.threadID, async (err, msgInfo) => {
     try {
       const response = await axios.get('https://labs.bible.org/api/?passage=random&type=json');
       const { bookname, chapter, verse, text } = response.data[0];
