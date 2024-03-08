@@ -21,7 +21,7 @@ module.exports.run = async function({ api, event, args }) {
     return;
   }
 
-  api.sendMessage(`🔍 "${input}"`, event.threadID, async (err, msgInfo) => {
+  api.sendMessage(``, event.threadID, async (err, msgInfo) => {
     try {
       const { data } = await axios.get(`https://openaikey-x20f.onrender.com/api?prompt=${encodeURIComponent(ownerPrompt + input)}`);
       const response = data.response;
