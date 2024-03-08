@@ -21,13 +21,11 @@ module.exports.run = async function({ api, event, args }) {
     return;
   }
 
-  api.sendMessage(``, event.threadID, async (err, msgInfo) => {
-    try {
-      const { data } = await axios.get(`https://openaikey-x20f.onrender.com/api?prompt=${encodeURIComponent(ownerPrompt + input)}`);
-      const response = data.response;
-      api.sendMessage(response, event.threadID, msgInfo.messageID);
-    } catch (error) {
-      api.sendMessage('An error occurred while processing your request.', event.threadID, msgInfo.messageID);
-    }
-  });
+  try {
+    const { data } = await axios.get(`https://openaikey-x20f.onrender.com/api?prompt=${encodeURIComponent(ownerPrompt + input)}`);
+    const response = data.response;
+    api.sendMessage(response, event.threadID);
+  } catch (error) {
+    api.sendMessage('An error occurred while processing your request.', event.threadID);
+  }
 };
